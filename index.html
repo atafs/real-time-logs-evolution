@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
       body {
-        margin: 20px;
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
         text-align: center;
@@ -102,7 +101,8 @@
   </head>
   <body>
     <h1>Real-Time Logs Evolution</h1>
-    <table>
+    <div>
+      <table>
       <tr>
         <th>Timestamp</th>
         <th>File</th>
@@ -116,6 +116,7 @@
         <td><a href="#" onclick="loadMarkdown('docs/2025-06-12.md')">2025-06-12 Interviews Experience Summary</a></td>
       </tr>
     </table>
+    </div>
     <div id="content"></div>
     <button class="clear-button" onclick="clearContent()">Clear</button>
     <script>
