@@ -69,13 +69,15 @@
         width: calc(100vw - 308px);
         margin: 20px auto;
         background-color: #fff;
-        padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: left;
         display: none; /* Initially hidden, shown on load */
       }
       #content.active {
         display: block; /* Shown when content is loaded */
+      }
+      .content-inner {
+        padding: 20px;
       }
       #content h1, #content h2, #content h3 {
         color: #333;
@@ -118,7 +120,9 @@
       </tr>
     </table>
     </div>
-    <div id="content"></div>
+    <div id="content">
+      <div class="content-inner"></div>
+    </div>
     <button class="clear-button" onclick="clearContent()">Clear</button>
     <script>
       function loadMarkdown(filePath) {
@@ -130,21 +134,21 @@
             return response.text();
           })
           .then(data => {
-            const contentDiv = document.getElementById('content');
+            const contentDiv = document.querySelector('#content .content-inner');
             contentDiv.innerHTML = marked.parse(data);
-            contentDiv.classList.add('active');
+            document.getElementById('content').classList.add('active');
           })
           .catch(error => {
             console.error('Error loading Markdown:', error);
-            document.getElementById('content').innerHTML = '<p>Error loading content.</p>';
+            document.querySelector('#content .content-inner').innerHTML = '<p>Error loading content.</p>';
             document.getElementById('content').classList.add('active');
           });
       }
 
       function clearContent() {
-        const contentDiv = document.getElementById('content');
+        const contentDiv = document.querySelector('#content .content-inner');
         contentDiv.innerHTML = '';
-        contentDiv.classList.remove('active');
+        document.getElementById('content').classList.remove('active');
       }
     </script>
   </body>
