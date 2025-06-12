@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Architecture Documentation Typescript, React, API and Jest</title>
     <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
       body {
         margin: 20px;
@@ -64,6 +65,21 @@
       tr:hover {
         background-color: #f5f5f5;
       }
+      #content {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      #content h1, #content h2, #content h3 {
+        color: #333;
+      }
+      #content p, #content ul, #content li {
+        line-height: 1.6;
+        color: #444;
+      }
     </style>
   </head>
   <body>
@@ -75,12 +91,32 @@
       </tr>
       <tr>
         <td>Wednesday, June 11, 2025</td>
-        <td><a href="docs/2025-06-11.md">2025-06-11.md</a></td>
+        <td><a href="#" onclick="loadMarkdown('docs/2025-06-11.md')">2025-06-11 Interviews Experience Summary</a></td>
       </tr>
       <tr>
         <td>Thursday, June 12, 2025</td>
-        <td><a href="docs/2025-06-12.md">2025-06-12.md</a></td>
+        <td><a href="#" onclick="loadMarkdown('docs/2025-06-12.md')">2025-06-12 Interviews Experience Summary</a></td>
       </tr>
     </table>
+    <div id="content"></div>
+    <script>
+      function loadMarkdown(filePath) {
+        fetch(filePath)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to load file');
+            }
+            return response.text();
+          })
+          .then(data => {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = marked.parse(data);
+          })
+          .catch(error => {
+            console.error('Error loading Markdown:', error);
+            document.getElementById('content').innerHTML = '<p>Error loading content.</p>';
+          });
+      }
+    </script>
   </body>
 </html>
