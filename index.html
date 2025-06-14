@@ -53,7 +53,8 @@
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
-      th, td {
+      th,
+      td {
         padding: 12px;
         text-align: left;
         border-bottom: 1px solid #ddd;
@@ -79,10 +80,14 @@
       .content-inner {
         padding: 20px;
       }
-      #content h1, #content h2, #content h3 {
+      #content h1,
+      #content h2,
+      #content h3 {
         color: #333;
       }
-      #content p, #content ul, #content li {
+      #content p,
+      #content ul,
+      #content li {
         line-height: 1.6;
         color: #444;
       }
@@ -106,19 +111,36 @@
     <h1>Real-Time Logs Evolution</h1>
     <div>
       <table>
-      <tr>
-        <th>Timestamp</th>
-        <th>File</th>
-      </tr>
-      <tr>
-        <td>Wednesday, June 11, 2025</td>
-        <td><a href="#" onclick="loadMarkdown('docs/2025-06-11.md')">2025-06-11 Interviews Experience Summary</a></td>
-      </tr>
-      <tr>
-        <td>Thursday, June 12, 2025</td>
-        <td><a href="#" onclick="loadMarkdown('docs/2025-06-12.md')">2025-06-12 Interviews Experience Summary</a></td>
-      </tr>
-    </table>
+        <tr>
+          <th>Timestamp</th>
+          <th>File</th>
+        </tr>
+        <tr>
+          <td>Tuesday, May 20, 2025</td>
+          <td>
+            <a href="#" onclick="loadMarkdown('docs/2025-05-20.md')"
+              >2025-06-11 New Financial Target</a
+            >
+          </td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td>Wednesday, June 11, 2025</td>
+          <td>
+            <a href="#" onclick="loadMarkdown('docs/2025-06-11.md')"
+              >2025-06-11 Interviews Experience Summary</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Thursday, June 12, 2025</td>
+          <td>
+            <a href="#" onclick="loadMarkdown('docs/2025-06-12.md')"
+              >2025-06-12 Interviews Experience Summary</a
+            >
+          </td>
+        </tr>
+      </table>
     </div>
     <div id="content">
       <div class="content-inner"></div>
@@ -127,28 +149,31 @@
     <script>
       function loadMarkdown(filePath) {
         fetch(filePath)
-          .then(response => {
+          .then((response) => {
             if (!response.ok) {
-              throw new Error('Failed to load file');
+              throw new Error("Failed to load file");
             }
             return response.text();
           })
-          .then(data => {
-            const contentDiv = document.querySelector('#content .content-inner');
+          .then((data) => {
+            const contentDiv = document.querySelector(
+              "#content .content-inner"
+            );
             contentDiv.innerHTML = marked.parse(data);
-            document.getElementById('content').classList.add('active');
+            document.getElementById("content").classList.add("active");
           })
-          .catch(error => {
-            console.error('Error loading Markdown:', error);
-            document.querySelector('#content .content-inner').innerHTML = '<p>Error loading content.</p>';
-            document.getElementById('content').classList.add('active');
+          .catch((error) => {
+            console.error("Error loading Markdown:", error);
+            document.querySelector("#content .content-inner").innerHTML =
+              "<p>Error loading content.</p>";
+            document.getElementById("content").classList.add("active");
           });
       }
 
       function clearContent() {
-        const contentDiv = document.querySelector('#content .content-inner');
-        contentDiv.innerHTML = '';
-        document.getElementById('content').classList.remove('active');
+        const contentDiv = document.querySelector("#content .content-inner");
+        contentDiv.innerHTML = "";
+        document.getElementById("content").classList.remove("active");
       }
     </script>
   </body>
